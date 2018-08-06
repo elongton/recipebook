@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load fractions %}
+{% load staticfiles %}
+
+{% block content %}
+  {% for recipe in recipes %}
+      <h1>{{ recipe.title }}</h1>
+      <img src="{% static 'img/grilled_cheese.jpg' %}" alt="" style="width: 200px;">
+      {% for section in recipe.ingredient_sections.all %}
+        <h5>{{section.section_name}}</h5>
+        <ul>
+        {% for ingredient_quantity in section.ingredient_quantities.all %}
+          <li>
+            {% display_fraction ingredient_quantity.quantity %}
+              {{ingredient_quantity.ingredient.unit.name}}
+            {{ingredient_quantity.ingredient.name}}</li>
+        {% endfor %}
+        </ul>
+      {% endfor %}
+      <h5>Instructions</h5>
+      {{recipe.instructions}}
+  {% endfor %}
+{% endblock %}
