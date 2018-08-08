@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView
+
 from .models import Recipe
 from .forms import AddRecipeForm
 
@@ -9,7 +10,8 @@ class RecipeList(ListView):
     context_object_name = 'recipes'
 
 
-class AddRecipeView(FormView):
+class AddRecipeView(CreateView):
+    model = Recipe
+    fields = ('title', 'instructions',)
     template_name = 'recipebook/add_recipe.html'
-    form_class = AddRecipeForm
     success_url = '/'

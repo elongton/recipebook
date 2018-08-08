@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'recipebook',
     'djfractions',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

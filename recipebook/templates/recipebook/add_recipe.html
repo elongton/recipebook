@@ -1,9 +1,15 @@
 {% extends 'base.html'%}
+{% load widget_tweaks %}
+
 
 {% block content %}
+<div class="form" style="padding: 25px 0;">
+  <form method="post">
+    {% csrf_token %}
+      {{ form.title|add_class:"form-control recipe-form-field"|attr:"placeholder:Title"}}
+      {{ form.instructions|add_class:"form-control recipe-form-field"|attr:"placeholder:Instructions"}}
+    <input type="submit" class='btn btn-primary app_submit' value=Submit>
+  </form>
+</div>
 
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
 {% endblock %}
